@@ -8,6 +8,8 @@ alternative-author: 'thebirk'
 
 #### A test!
 
+[Home?](/)
+
 #### A title with a random class {.the_random_class}
 
 Here is some text.
