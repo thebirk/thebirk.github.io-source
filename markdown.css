@@ -1,0 +1,43 @@
+html {
+	font-family: sans-serif;
+	font-size: 18px;
+	background-color: #1A1A1A;
+	color: #ddd;
+}
+
+body {
+	max-width: 960px;
+	margin: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	color: #FFAF20;
+}
+
+p {
+	padding-left: 4px;
+}
+
+.title {
+	color: #fff;
+	margin-bottom: 0px;
+}
+
+.subtitle {
+	margin-top: 0px;
+	color: #aaa;
+}
+
+.author-and-date {
+	font-size: 0.7em;
+	display: inline-block;
+}
+
+.date {
+	font-weight: bold;
+}
+
+blockquote {
+	background-color: #2C2C2C;
+}
