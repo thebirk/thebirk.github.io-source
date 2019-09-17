@@ -3,12 +3,15 @@ title: 'Hello, world!'
 subtitle: 'An introduction to this world.'
 date: '2019-09-17'
 author: 'Aleksander B. Birkeland'
-alternative-author: 'thebirk'
 ...
 
 #### A test!
 
 [Home?](/)
+
+| Name | Age |
+|------|-----|
+|Ola Nordmann|42|
 
 #### A title with a random class {.the_random_class}
 
@@ -16,9 +19,18 @@ Here is some text.
 
 Less text. ASDas
 
-#### Some LaTeX math
+#### Some LaTeX
 
-$$\frac{a}{b}$$
+$$
+\binom{a}{b} \neq  \frac{a}{b} \label{a}\tag{1}
+$$
+$$
+\binom{a}{b} = 1 + \frac{a}{b} \label{b}\tag{2}
+$$
+
+And perhaps some inline LaTeX $y = 3x^2 + 4$.
+
+Also here is that equation above referenced $\ref{a}$. And the second line $\ref{b}$.
 
 #### A short list of stuff
 

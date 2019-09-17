@@ -38,6 +38,11 @@ p {
 	font-weight: bold;
 }
 
+.sourceCode {
+	background-color: white;
+	color: black;
+}
+
 blockquote {
 	background-color: #2C2C2C;
 }
