@@ -1,13 +1,20 @@
 html {
 	font-family: sans-serif;
 	font-size: 18px;
-	background-color: #1A1A1A;
+	background-color: #101010;
 	color: #ddd;
 }
 
 body {
 	max-width: 960px;
 	margin: auto;
+}
+
+#page {
+	background-color: #1A1A1A;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-top: 8px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,6 +24,12 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
 	padding-left: 4px;
+}
+
+footer {
+	margin-top: 12px;
+	padding-bottom: 8px;
+	color: #777;
 }
 
 .title {
@@ -39,8 +52,8 @@ p {
 }
 
 .sourceCode {
-	background-color: white;
-	color: black;
+	/*background-color: white;*/
+	/*color: black;*/
 }
 
 blockquote {

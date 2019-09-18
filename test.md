@@ -3,17 +3,24 @@ title: 'Hello, world!'
 subtitle: 'An introduction to this world.'
 date: '2019-09-17'
 author: 'Aleksander B. Birkeland'
+custom-style:
+  - '
+    .the-custom-class {
+      color: #0aa;
+    }
+    '
 ...
 
 #### A test!
 
 [Home?](/)
 
-| Name | Age |
-|------|-----|
-|Ola Nordmann|42|
+| Name          | Age |
+|:--------------|----:|
+| Ola Nordmann  |  42 |
+| Kari Nordmann |  24 |
 
-#### A title with a random class {.the_random_class}
+#### A title with a custom class {.the-custom-class}
 
 Here is some text.
 

@@ -1,8 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"$if(lang)$ lang="$lang$" xml:lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
 <head>
-  <!-- <script type="text/javascript" src="http://livejs.com/live.js"></script> !-->
-
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,6 +34,10 @@
     <link rel="stylesheet" href="$css$" type="text/css" />
   $endfor$
 
+  $for(custom-style)$
+    <style>$custom-style$</style>
+  $endfor$
+
   $if(math)$
     $math$
   $endif$
@@ -46,52 +48,57 @@
 </head>
 
 <body>
+<div id="page">
 
-$for(include-before)$
-  $include-before$
-$endfor$
+  $for(include-before)$
+    $include-before$
+  $endfor$
 
-$if(title)$
-  <div id="$idprefix$header">
-  <h1 class="title">$title$</h1>
-  $if(subtitle)$
-    <h4 class="subtitle">&ndash; $subtitle$</h4>
-  $endif$
-
-
-  <div class="author-and-date">
-    $if(date)$
-      <span class="date">$date$</span>
+  $if(title)$
+    <div id="$idprefix$header">
+    <h1 class="title">$title$</h1>
+    $if(subtitle)$
+      <h4 class="subtitle">&ndash; $subtitle$</h4>
     $endif$
 
-    &ndash;
 
-    $for(author)$
-      <span class="author">$author$</span>
-    $endfor$
-  </div>
-  
-  </div>
-$endif$
+    <div class="author-and-date">
+      $if(date)$
+        <span class="date">$date$</span>
+      $endif$
 
-<hr>
+      &ndash;
 
-$if(toc)$
-  <div id="$idprefix$TOC">
-  $toc$
-  </div>
-$endif$
+      $for(author)$
+        <span class="author">$author$</span>
+      $endfor$
+    </div>
+    
+    </div>
+  $endif$
 
+  <hr>
 
-$body$
+  $if(toc)$
+    <div id="$idprefix$TOC">
+    $toc$
+    </div>
+  $endif$
 
-$for(include-after)$
-  $include-after$
-$endfor$
+  <article>
+  $body$
+  </article>
 
-<footer>
-  2019 &copy; Aleksander B. Birkeland
-</footer>
+  $for(include-after)$
+    $include-after$
+  $endfor$
 
+  <footer>
+    <hr>
+    2019 &copy; Aleksander B. Birkeland
+  </footer>
+
+</div>
 </body>
+
 </html>
