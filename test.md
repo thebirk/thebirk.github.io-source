@@ -76,3 +76,9 @@ int main(int argc, char **argv) {
     return 0;
 }
 ```
+
+Here is another snippet
+
+```
+This snippet features no syntax highlighting.
+```
