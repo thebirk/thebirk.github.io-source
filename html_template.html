@@ -56,8 +56,16 @@
 $include-before$
   $endfor$
 
+  <nav>
+    <div id="navbar">
+      <a href="/">Home</a> &ndash;
+      <a href="/$post_path$">Posts</a>
+    </div>
+    <hr>
+  </nav>
+
   $if(title)$
-    <div id="$idprefix$header">
+    <div id="header">
     <h1 class="title">$title$</h1>
     $if(subtitle)$
       <h4 class="subtitle">&ndash; $subtitle$</h4>
@@ -69,7 +77,11 @@ $include-before$
         <span class="date">$date$</span>
       $endif$
 
+      $if(author)$
+      $if(date)$
       &ndash;
+      $endif$
+      $endif$
 
       $for(author)$
         <span class="author">$author$</span>
@@ -82,7 +94,7 @@ $include-before$
   <!-- <hr> !-->
 
   $if(toc)$
-    <div id="$idprefix$TOC">
+    <div id="TOC">
     $toc$
     </div>
   $endif$
