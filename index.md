@@ -6,7 +6,7 @@ div.contact-info td {
     padding-right: 10px;
 }
   '
-...
+---
 
 ## Contact Info {.contact-info}
 

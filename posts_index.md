@@ -1,4 +1,4 @@
 ---
 pagetitle: 'thebirk.net - Posts'
-...
+---
 

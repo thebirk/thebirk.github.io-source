@@ -9,7 +9,7 @@ custom-style:
       color: #0aa;
     }
     '
-...
+---
 
 #### A test!
 

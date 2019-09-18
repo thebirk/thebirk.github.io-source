@@ -5,8 +5,8 @@ import pathlib
 import datetime
 import subprocess
 
-# Push subtree command 
-# git subtree push --prefix output pages master
+# NOTES
+# - We can use variables if we use the file as the template. ex. https://github.com/jgm/pandoc/issues/1950#issuecomment-74613325
 
 output_path_str = './output'
 output_path = pathlib.Path(output_path_str)
@@ -32,6 +32,7 @@ custom_pandoc_vars = {
 	'base_url': 'http://thebirk.net/',
 	'post_path': str(posts_path.relative_to(output_path)),
 	'year': str(datetime.datetime.now().year),
+	'test': '<h1>This is a template generated header.</h1>'
 }
 
 # Copy CNAME to output
