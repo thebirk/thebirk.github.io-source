@@ -2,7 +2,7 @@
 pagetitle: 'thebirk.net'
 custom-style:
   - '
-td {
+div.contact-info td {
     padding-right: 10px;
 }
   '

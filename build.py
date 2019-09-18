@@ -1,8 +1,9 @@
-import json
 import os
-import pathlib
-import subprocess
+import json
 import shutil
+import pathlib
+import datetime
+import subprocess
 
 # Push subtree command 
 # git subtree push --prefix output pages master
@@ -30,6 +31,7 @@ posts_path.mkdir(exist_ok=True)
 custom_pandoc_vars = {
 	'base_url': 'http://thebirk.net/',
 	'post_path': str(posts_path.relative_to(output_path)),
+	'year': str(datetime.datetime.now().year),
 }
 
 # Copy CNAME to output
