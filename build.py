@@ -30,7 +30,8 @@ custom_pandoc_vars = {
 	'post_path': str(posts_path.relative_to(output_path)),
 }
 
-custom_pandoc_vars['base_url'] = 'localhost'
+# Copy CNAME to output
+shutil.copyfile('CNAME', output_path.joinpath('CNAME'))
 
 # List of all posts
 posts = []
@@ -111,6 +112,8 @@ def gen_posts_index():
 
 	subprocess.run(index_params, check=True)
 
+	os.remove(posts_path.joinpath('index.html.pre'))
+
 
 gen_posts_index()
 
@@ -153,5 +156,7 @@ def gen_index():
 	index_params.append('index.md')
 
 	subprocess.run(index_params, check=True)
+
+	os.remove(output_path.joinpath('index.html.pre'))
 
 gen_index()
