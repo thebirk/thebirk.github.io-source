@@ -4,6 +4,8 @@ import pathlib
 import subprocess
 import shutil
 
+# Push subtree command 
+# git subtree push --prefix output pages master
 
 output_path_str = './output'
 output_path = pathlib.Path(output_path_str)
