@@ -55,6 +55,8 @@ Here is a short list of stuff for those of you who might be interested.
 
 #### A short code block
 
+Here is an amazing code snippet.
+
 ```c++
 #include <stdio.h>
 
