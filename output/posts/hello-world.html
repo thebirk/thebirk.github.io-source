@@ -16,9 +16,48 @@
   <style type="text/css">code{white-space: pre;}</style>
 
   
+      <style type="text/css">
+  div.sourceCode { overflow-x: auto; }
+  table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+    margin: 0; padding: 0; vertical-align: baseline; border: none; }
+  table.sourceCode { width: 100%; line-height: 100%; }
+  td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+  td.sourceCode { padding-left: 5px; }
+  code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code > span.dt { color: #902000; } /* DataType */
+  code > span.dv { color: #40a070; } /* DecVal */
+  code > span.bn { color: #40a070; } /* BaseN */
+  code > span.fl { color: #40a070; } /* Float */
+  code > span.ch { color: #4070a0; } /* Char */
+  code > span.st { color: #4070a0; } /* String */
+  code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code > span.ot { color: #007020; } /* Other */
+  code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code > span.fu { color: #06287e; } /* Function */
+  code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  code > span.cn { color: #880000; } /* Constant */
+  code > span.sc { color: #4070a0; } /* SpecialChar */
+  code > span.vs { color: #4070a0; } /* VerbatimString */
+  code > span.ss { color: #bb6688; } /* SpecialString */
+  code > span.im { } /* Import */
+  code > span.va { color: #19177c; } /* Variable */
+  code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code > span.op { color: #666666; } /* Operator */
+  code > span.bu { } /* BuiltIn */
+  code > span.ex { } /* Extension */
+  code > span.pp { color: #bc7a00; } /* Preprocessor */
+  code > span.at { color: #7d9029; } /* Attribute */
+  code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
   
   
+      <style>div.the-custom-class h4 { color: #0aa; }</style>
   
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   
       <style>
     
@@ -145,7 +184,7 @@
 
       <div id="header">
     <h1 class="title">Hello, world!</h1>
-          <h4 class="subtitle">&ndash; My first article on this &quot;blog&quot;</h4>
+          <h4 class="subtitle">&ndash; An introduction to this world.</h4>
     
 
     <div class="author-and-date">
@@ -162,7 +201,85 @@
 
   
   <article>
-<p>This is a test to make sure this section is not empty.</p>
+<div id="a-test" class="section level4">
+<h4>A test!</h4>
+<p>Hello</p>
+<p><a href="/">Home?</a></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="right">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ola Nordmann</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="left">Kari Nordmann</td>
+<td align="right">24</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="a-title-with-a-custom-class" class="section level4 the-custom-class">
+<h4>A title with a custom class</h4>
+<p>Here is some text.</p>
+<p>Less text. ASDas</p>
+</div>
+<div id="some-latex" class="section level4">
+<h4>Some LaTeX</h4>
+<p><span class="math display">\[
+\binom{a}{b} \neq  \frac{a}{b} \label{a}\tag{1}
+\]</span> <span class="math display">\[
+\binom{a}{b} = 1 + \frac{a}{b} \label{b}\tag{2}
+\]</span></p>
+<p>And perhaps some inline LaTeX <span class="math inline">\(y = 3x^2 + 4\)</span>.</p>
+<p>Also here is that equation above referenced <span class="math inline">\(\ref{a}\)</span>. And the second line <span class="math inline">\(\ref{b}\)</span>.</p>
+</div>
+<div id="a-short-list-of-stuff" class="section level4">
+<h4>A short list of stuff</h4>
+<p>Here is a short list of stuff for those of you who might be interested.</p>
+<ul>
+<li>Apples</li>
+<li>Pears</li>
+<li>Horses?</li>
+</ul>
+</div>
+<div id="some-quotes" class="section level4">
+<h4>Some quotes</h4>
+<blockquote>
+<p>Last time we spoke I introduced the concept of headers</p>
+<blockquote>
+<p>This is what I chose to call a header. &quot;# This is my header&quot;</p>
+</blockquote>
+</blockquote>
+</div>
+<div id="a-short-code-block" class="section level4">
+<h4>A short code block</h4>
+<p>Here is an amazing code snippet.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;
+<span class="kw">struct</span> Array {
+    T *data;
+    <span class="dt">size_t</span> capacity;
+    <span class="dt">size_t</span> size;
+
+    T&amp; <span class="kw">operator</span>[](<span class="dt">size_t</span> index) {
+        <span class="cf">return</span> data[index];
+    }
+};
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {
+    printf(<span class="st">&quot;Hello, world!</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>Here is another snippet</p>
+<pre><code>This snippet features no syntax highlighting.</code></pre>
+</div>
   </article>
 
   

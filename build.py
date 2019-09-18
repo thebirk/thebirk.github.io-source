@@ -6,7 +6,10 @@ import datetime
 import subprocess
 
 # NOTES
-# - We can use variables if we use the file as the template. ex. https://github.com/jgm/pandoc/issues/1950#issuecomment-74613325
+# - We can use variables in markdown if we use the file as the template. ex. https://github.com/jgm/pandoc/issues/1950#issuecomment-74613325
+#   This would allows to avoid using --include-before and co., instead just writing something like
+#      Here are my articles
+#       $list_of_articles$
 
 output_path_str = './output'
 output_path = pathlib.Path(output_path_str)
@@ -32,7 +35,6 @@ custom_pandoc_vars = {
 	'base_url': 'http://thebirk.net/',
 	'post_path': str(posts_path.relative_to(output_path)),
 	'year': str(datetime.datetime.now().year),
-	'test': '<h1>This is a template generated header.</h1>'
 }
 
 # Copy CNAME to output
@@ -159,7 +161,6 @@ def gen_index():
 			index_params.append('{}:{}'.format(key, value))
 
 	index_params.append('index.md')
-
 	subprocess.run(index_params, check=True)
 
 	os.remove(output_path.joinpath('index.html.pre'))
