@@ -1,7 +1,7 @@
 html {
 	font-family: sans-serif;
 	font-size: 18px;
-	background-color: #101010;
+	background-color: #444;
 	color: #ddd;
 }
 
@@ -27,7 +27,7 @@ p {
 }
 
 footer {
-	margin-top: 12px;
+	margin-top: 2.5rem;
 	padding-bottom: 8px;
 	color: #777;
 }
