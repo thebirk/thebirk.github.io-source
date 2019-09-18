@@ -8,8 +8,18 @@ import subprocess
 # NOTES
 # - We can use variables in markdown if we use the file as the template. ex. https://github.com/jgm/pandoc/issues/1950#issuecomment-74613325
 #   This would allows to avoid using --include-before and co., instead just writing something like
-#      Here are my articles
-#       $list_of_articles$
+#
+#    > Here are my articles
+#    > $list_of_articles$
+#
+#   This would also allow us to have prev and next links in the articles
+#
+#    >  $if(prev)$
+#    >  [Prev]($prev$)
+#    >  $endif$
+#   
+#   Where the prev/next vars would be set before generating each article.
+#   Would be easier if we did the JSON-meta pass first, before we generate the post htmls
 
 output_path_str = './output'
 output_path = pathlib.Path(output_path_str)
