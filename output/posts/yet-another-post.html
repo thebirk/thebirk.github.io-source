@@ -67,12 +67,19 @@
     	background-color: #2A2A2A;
     	color: #eee;
     	font-family: 'Consolas', monospace;
+    	border-radius: 2px;
+    }
+    
+    div.sourceCode {
+    	background-color: inherit;
     }
     
     pre > code {
     	display: block;
     	overflow: auto;
     	
+    	background-color: #2A2A2A;
+    
     	padding: 8px;
     	margin: 0px 8px;
     
@@ -97,6 +104,24 @@
     	color: #FF4F20;
     }
     
+    a:link, a:visited {
+    	text-decoration: none;
+    	color: #FF8F20;
+    }
+    
+    a:hover, a:active {
+    	text-decoration: underline dotted;
+    	color: #FFAF20;
+    }
+    
+    li {
+    	list-style: none;
+    }
+    
+    li::before {
+    	content: "– ";
+    }
+    
     #page {
     	background-color: #1A1A1A;
     	padding-left: 18px;
@@ -118,6 +143,7 @@
     
     .subtitle {
     	margin-top: 0px;
+    	margin-bottom: 2px;
     	color: #aaa;
     }
     
@@ -139,7 +165,7 @@
   
   <nav>
     <div id="navbar">
-      <a href="/">Home</a> &ndash;
+      <a href="/">Home</a> &vert;
       <a href="/posts">Posts</a>
     </div>
     <hr>
@@ -173,6 +199,7 @@
   </footer>
 
 </div>
+
 </body>
 
 </html>

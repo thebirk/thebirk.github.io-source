@@ -11,7 +11,7 @@ custom-style:
     '
 ---
 
-#### A test!
+### A test!
 
 Hello
 
@@ -22,13 +22,13 @@ Hello
 | Ola Nordmann  |  42 |
 | Kari Nordmann |  24 |
 
-#### A title with a custom class {.the-custom-class}
+### A title with a custom class {.the-custom-class}
 
 Here is some text.
 
 Less text. ASDas
 
-#### Some LaTeX
+### Some LaTeX
 
 $$$$
 \binom{a}{b} \neq  \frac{a}{b} \label{a}\tag{1}
@@ -41,7 +41,7 @@ And perhaps some inline LaTeX $$y = 3x^2 + 4$$.
 
 Also here is that equation above referenced $$\ref{a}$$. And the second line $$\ref{b}$$.
 
-#### A short list of stuff
+### A short list of stuff
 
 Here is a short list of stuff for those of you who might be interested.
 
@@ -49,18 +49,20 @@ Here is a short list of stuff for those of you who might be interested.
 - Pears
 - Horses?
 
-#### Some quotes
+### Some quotes
 
 > Last time we spoke I introduced the concept of headers
 > 
 > > This is what I chose to call a header. "# This is my header"
 
-#### A short code block
+### A short code block
 
 Here is an amazing code snippet.
 
 ```c++
 #include <stdio.h>
+
+// This is a comment
 
 template<typename T>
 struct Array {

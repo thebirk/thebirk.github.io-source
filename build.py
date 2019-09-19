@@ -5,22 +5,6 @@ import pathlib
 import datetime
 import subprocess
 
-# NOTES
-# - We can use variables in markdown if we use the file as the template. ex. https://github.com/jgm/pandoc/issues/1950#issuecomment-74613325
-#   This would allows to avoid using --include-before and co., instead just writing something like
-#
-#    > Here are my articles
-#    > $list_of_articles$
-#
-#   This would also allow us to have prev and next links in the articles
-#
-#    >  $if(prev)$
-#    >  [Prev]($prev$)
-#    >  $endif$
-#   
-#   Where the prev/next vars would be set before generating each article.
-#   Would be easier if we did the JSON-meta pass first, before we generate the post htmls
-
 # Metadata variables
 # 
 # 'custom-style':
@@ -171,6 +155,10 @@ def preprocess_markdown(path, vars):
 	return result.stdout
 
 
+def copy_resources(metadata, ):
+	pass
+
+
 def gen_posts():
 	# Grab list of all posts in posts_dir
 	posts_list = list(pathlib.Path(posts_dir).glob("*.md"))
@@ -190,7 +178,8 @@ def gen_posts():
 			'-H', css,
 			'--template', post_template,
 			'-o', str(output_html),
-			'-f', 'markdown'
+			'-f', 'markdown',
+			'--highlight-style=zenburn'
 		]
 
 		for key, value in global_pandoc_vars.items():
@@ -225,6 +214,7 @@ def main():
 
 	# Copy CNAME to output
 	shutil.copyfile('CNAME', output_path.joinpath('CNAME'))
+	#shutil.copyfile('anchor.min.js', output_path.joinpath('anchor.min.js'))
 
 	gen_posts()
 	gen_posts_index()

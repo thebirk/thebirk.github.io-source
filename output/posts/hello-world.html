@@ -41,43 +41,42 @@
       -khtml-user-select: none; -moz-user-select: none;
       -ms-user-select: none; user-select: none;
       padding: 0 4px; width: 4em;
-      color: #aaaaaa;
     }
-  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  pre.numberSource { margin-left: 3em;  padding-left: 4px; }
   div.sourceCode
-    {  }
+    { color: #cccccc; background-color: #303030; }
   @media screen {
   a.sourceLine::before { text-decoration: underline; }
   }
-  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-  code span.at { color: #7d9029; } /* Attribute */
-  code span.bn { color: #40a070; } /* BaseN */
+  code span.al { color: #ffcfaf; } /* Alert */
+  code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+  code span.at { } /* Attribute */
+  code span.bn { color: #dca3a3; } /* BaseN */
   code span.bu { } /* BuiltIn */
-  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-  code span.ch { color: #4070a0; } /* Char */
-  code span.cn { color: #880000; } /* Constant */
-  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-  code span.dt { color: #902000; } /* DataType */
-  code span.dv { color: #40a070; } /* DecVal */
-  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.cf { color: #f0dfaf; } /* ControlFlow */
+  code span.ch { color: #dca3a3; } /* Char */
+  code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+  code span.co { color: #7f9f7f; } /* Comment */
+  code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+  code span.do { color: #7f9f7f; } /* Documentation */
+  code span.dt { color: #dfdfbf; } /* DataType */
+  code span.dv { color: #dcdccc; } /* DecVal */
+  code span.er { color: #c3bf9f; } /* Error */
   code span.ex { } /* Extension */
-  code span.fl { color: #40a070; } /* Float */
-  code span.fu { color: #06287e; } /* Function */
+  code span.fl { color: #c0bed1; } /* Float */
+  code span.fu { color: #efef8f; } /* Function */
   code span.im { } /* Import */
-  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-  code span.op { color: #666666; } /* Operator */
-  code span.ot { color: #007020; } /* Other */
-  code span.pp { color: #bc7a00; } /* Preprocessor */
-  code span.sc { color: #4070a0; } /* SpecialChar */
-  code span.ss { color: #bb6688; } /* SpecialString */
-  code span.st { color: #4070a0; } /* String */
-  code span.va { color: #19177c; } /* Variable */
-  code span.vs { color: #4070a0; } /* VerbatimString */
-  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+  code span.kw { color: #f0dfaf; } /* Keyword */
+  code span.op { color: #f0efd0; } /* Operator */
+  code span.ot { color: #efef8f; } /* Other */
+  code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+  code span.sc { color: #dca3a3; } /* SpecialChar */
+  code span.ss { color: #cc9393; } /* SpecialString */
+  code span.st { color: #cc9393; } /* String */
+  code span.va { } /* Variable */
+  code span.vs { color: #cc9393; } /* VerbatimString */
+  code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     </style>
   
   
@@ -132,12 +131,19 @@
     	background-color: #2A2A2A;
     	color: #eee;
     	font-family: 'Consolas', monospace;
+    	border-radius: 2px;
+    }
+    
+    div.sourceCode {
+    	background-color: inherit;
     }
     
     pre > code {
     	display: block;
     	overflow: auto;
     	
+    	background-color: #2A2A2A;
+    
     	padding: 8px;
     	margin: 0px 8px;
     
@@ -162,6 +168,24 @@
     	color: #FF4F20;
     }
     
+    a:link, a:visited {
+    	text-decoration: none;
+    	color: #FF8F20;
+    }
+    
+    a:hover, a:active {
+    	text-decoration: underline dotted;
+    	color: #FFAF20;
+    }
+    
+    li {
+    	list-style: none;
+    }
+    
+    li::before {
+    	content: "– ";
+    }
+    
     #page {
     	background-color: #1A1A1A;
     	padding-left: 18px;
@@ -183,6 +207,7 @@
     
     .subtitle {
     	margin-top: 0px;
+    	margin-bottom: 2px;
     	color: #aaa;
     }
     
@@ -204,7 +229,7 @@
   
   <nav>
     <div id="navbar">
-      <a href="/">Home</a> &ndash;
+      <a href="/">Home</a> &vert;
       <a href="/posts">Posts</a>
     </div>
     <hr>
@@ -229,8 +254,8 @@
 
   
   <article>
-<section id="a-test" class="level4">
-<h4>A test!</h4>
+<section id="a-test" class="level3">
+<h3>A test!</h3>
 <p>Hello</p>
 <p><a href="/">Home?</a></p>
 <table>
@@ -252,13 +277,13 @@
 </tbody>
 </table>
 </section>
-<section id="a-title-with-a-custom-class" class="level4 the-custom-class">
-<h4>A title with a custom class</h4>
+<section id="a-title-with-a-custom-class" class="level3 the-custom-class">
+<h3>A title with a custom class</h3>
 <p>Here is some text.</p>
 <p>Less text. ASDas</p>
 </section>
-<section id="some-latex" class="level4">
-<h4>Some LaTeX</h4>
+<section id="some-latex" class="level3">
+<h3>Some LaTeX</h3>
 <p><span class="math display">\[
 \binom{a}{b} \neq  \frac{a}{b} \label{a}\tag{1}
 \]</span> <span class="math display">\[
@@ -267,8 +292,8 @@
 <p>And perhaps some inline LaTeX <span class="math inline">\(y = 3x^2 + 4\)</span>.</p>
 <p>Also here is that equation above referenced <span class="math inline">\(\ref{a}\)</span>. And the second line <span class="math inline">\(\ref{b}\)</span>.</p>
 </section>
-<section id="a-short-list-of-stuff" class="level4">
-<h4>A short list of stuff</h4>
+<section id="a-short-list-of-stuff" class="level3">
+<h3>A short list of stuff</h3>
 <p>Here is a short list of stuff for those of you who might be interested.</p>
 <ul>
 <li>Apples</li>
@@ -276,8 +301,8 @@
 <li>Horses?</li>
 </ul>
 </section>
-<section id="some-quotes" class="level4">
-<h4>Some quotes</h4>
+<section id="some-quotes" class="level3">
+<h3>Some quotes</h3>
 <blockquote>
 <p>Last time we spoke I introduced the concept of headers</p>
 <blockquote>
@@ -285,26 +310,28 @@
 </blockquote>
 </blockquote>
 </section>
-<section id="a-short-code-block" class="level4">
-<h4>A short code block</h4>
+<section id="a-short-code-block" class="level3">
+<h3>A short code block</h3>
 <p>Here is an amazing code snippet.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">struct</span> Array {</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    T *data;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">size_t</span> capacity;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="dt">size_t</span> size;</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">    T&amp; <span class="kw">operator</span>[](<span class="dt">size_t</span> index) {</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">        <span class="cf">return</span> data[index];</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    }</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">};</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">    printf(<span class="st">&quot;Hello, world!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">// This is a comment</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">struct</span> Array {</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    T *data;</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="dt">size_t</span> capacity;</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="dt">size_t</span> size;</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    T&amp; <span class="kw">operator</span>[](<span class="dt">size_t</span> index) {</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">        <span class="cf">return</span> data[index];</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    }</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">};</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">    printf(<span class="st">&quot;Hello, world!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">}</a></code></pre></div>
 <p>Here is another snippet</p>
 <pre><code>This snippet features no syntax highlighting.</code></pre>
 <p>Here is an inline block <code>variable_name</code>.</p>
@@ -318,6 +345,7 @@
   </footer>
 
 </div>
+
 </body>
 
 </html>
