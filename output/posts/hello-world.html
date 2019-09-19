@@ -186,6 +186,11 @@
     	content: "– ";
     }
     
+    nav a + a::before {
+    	content: " | ";
+    	color: #fff;
+    }
+    
     #page {
     	background-color: #1A1A1A;
     	padding-left: 18px;
@@ -229,7 +234,8 @@
   
   <nav>
     <div id="navbar">
-      <a href="/">Home</a> &vert;
+      <!-- This can now be generated using a for(dest) loop because the | is inserted with CSS !-->
+      <a href="/">Home</a>
       <a href="/posts">Posts</a>
     </div>
     <hr>

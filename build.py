@@ -155,7 +155,7 @@ def preprocess_markdown(path, vars):
 	return result.stdout
 
 
-def copy_resources(metadata, ):
+def copy_resources(metadata, src_path, dst_path):
 	pass
 
 
