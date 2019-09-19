@@ -30,16 +30,16 @@ Less text. ASDas
 
 #### Some LaTeX
 
-$$
+$$$$
 \binom{a}{b} \neq  \frac{a}{b} \label{a}\tag{1}
-$$
-$$
+$$$$
+$$$$
 \binom{a}{b} = 1 + \frac{a}{b} \label{b}\tag{2}
-$$
+$$$$
 
-And perhaps some inline LaTeX $y = 3x^2 + 4$.
+And perhaps some inline LaTeX $$y = 3x^2 + 4$$.
 
-Also here is that equation above referenced $\ref{a}$. And the second line $\ref{b}$.
+Also here is that equation above referenced $$\ref{a}$$. And the second line $$\ref{b}$$.
 
 #### A short list of stuff
 
@@ -84,3 +84,5 @@ Here is another snippet
 ```
 This snippet features no syntax highlighting.
 ```
+
+Here is an inline block `variable_name`.

@@ -21,6 +21,16 @@ import subprocess
 #   Where the prev/next vars would be set before generating each article.
 #   Would be easier if we did the JSON-meta pass first, before we generate the post htmls
 
+# Metadata variables
+# 
+# 'custom-style':
+#  A list of strings that will be inserted ass css into the HTML output
+#   useful for custom styling of certain elements.
+#
+# 'resources':
+#  A list of files that will be moved to the same folder as the HTML output
+#   the path to the files should be relative.
+
 output_path_str = './output'
 output_path = pathlib.Path(output_path_str)
 
@@ -30,71 +40,22 @@ post_template = './html_template.html'
 metadata_template = './html_template_metadata.html'
 css = './markdown.css'
 
-
-# Ensure output_path exists and is empty
-shutil.rmtree(output_path, ignore_errors=True)
-os.makedirs(output_path_str, exist_ok=True)
-
-# Grab list of all posts in posts_dir
-posts_list = list(pathlib.Path(posts_dir).glob("*.md"))
 posts_path = output_path.joinpath('posts')
-posts_path.mkdir(exist_ok=True)
 
 # These variables will be available inside the template
-custom_pandoc_vars = {
+global_pandoc_vars = {
 	'base_url': 'http://thebirk.net/',
 	'post_path': str(posts_path.relative_to(output_path)),
 	'year': str(datetime.datetime.now().year),
 }
 
-# Copy CNAME to output
-shutil.copyfile('CNAME', output_path.joinpath('CNAME'))
-
 # List of all posts
 posts = []
 
-for index, path in enumerate(posts_list):
-	print('({}/{})'.format(index+1, len(posts_list)), path)
-	output_html = posts_path.joinpath('{}.html'.format(path.stem))
-	params = [
-		'pandoc',
-		'-s',
-		'--section-divs',
-		'--mathjax',
-		'-H', css,
-		'--template', post_template,
-		'-o', str(output_html),
-	]
-
-	for key, value in custom_pandoc_vars.items():
-		params.append('-V')
-		params.append('{}:{}'.format(key, value))
-
-	params.append(str(path))
-	# print(params)
-	subprocess.run(params, check=True)
-
-	json_result = subprocess.run([
-		'pandoc',
-		'-s',
-		'-t', 'html',
-		'-f', 'markdown',
-		'--template', metadata_template,
-		# '-o', str(output_html.with_suffix('.json')),
-		str(path)
-	], check=True, capture_output=True)
-
-	post = json.loads(json_result.stdout)
-	post['path'] = output_html.relative_to(output_path)
-	posts.append(post)
-
-
 def get_path_as_relative(path):
+	#TODO: This should be renamed to something like get_path_as_relative_link() or something as all
+	#      it does it make sure the path with '/' thus making it relative to the website root
 	return '/' + str(path)
-
-
-posts.sort(key=lambda p: p['date'], reverse=True)
-
 
 def gen_posts_index():
 	print("posts/index.html")
@@ -121,7 +82,7 @@ def gen_posts_index():
 		'-o', str(posts_path.joinpath('index.html')),
 	]
 
-	for key, value in custom_pandoc_vars.items():
+	for key, value in global_pandoc_vars.items():
 			index_params.append('-V')
 			index_params.append('{}:{}'.format(key, value))
 
@@ -132,7 +93,22 @@ def gen_posts_index():
 	os.remove(posts_path.joinpath('index.html.pre'))
 
 
-gen_posts_index()
+def get_metadata_for_file(path):
+	# We could avoid a pandoc pass by simply parsing the header
+	# Doing this for now as it keeps dependencies down and the header parsing identical
+	json_result = subprocess.run([
+		'pandoc',
+		'-s',
+		'-t', 'html',
+		'-f', 'markdown',
+		'--template', metadata_template,
+		path
+	], check=True, capture_output=True)
+
+	metadata = json.loads(json_result.stdout)
+
+	return metadata
+
 
 def gen_index():
 	print("index.html")
@@ -166,13 +142,94 @@ def gen_index():
 		'-o', str(output_path.joinpath('index.html')),
 	]
 
-	for key, value in custom_pandoc_vars.items():
+	for key, value in global_pandoc_vars.items():
 			index_params.append('-V')
 			index_params.append('{}:{}'.format(key, value))
 
 	index_params.append('index.md')
 	subprocess.run(index_params, check=True)
 
+	metadata = get_metadata_for_file('index.md')
+	print(metadata)
+
 	os.remove(output_path.joinpath('index.html.pre'))
 
-gen_index()
+
+def preprocess_markdown(path, vars):
+	params = [
+		'pandoc',
+		'--template', path,
+	]
+
+	for key, value in vars.items():
+			params.append('-V')
+			params.append('{}:{}'.format(key, value))
+
+	params.append(path)
+	result = subprocess.run(params, check=True, capture_output=True)
+
+	return result.stdout
+
+
+def gen_posts():
+	# Grab list of all posts in posts_dir
+	posts_list = list(pathlib.Path(posts_dir).glob("*.md"))
+	posts_path.mkdir(exist_ok=True)
+
+	for index, path in enumerate(posts_list):
+		print('({}/{})'.format(index+1, len(posts_list)), path)
+
+		preprocessed = preprocess_markdown(str(path), global_pandoc_vars)
+
+		output_html = posts_path.joinpath('{}.html'.format(path.stem))
+		params = [
+			'pandoc',
+			'-s',
+			'--section-divs',
+			'--mathjax',
+			'-H', css,
+			'--template', post_template,
+			'-o', str(output_html),
+			'-f', 'markdown'
+		]
+
+		for key, value in global_pandoc_vars.items():
+			params.append('-V')
+			params.append('{}:{}'.format(key, value))
+
+		# params.append(str(path))
+		# print(params)
+		subprocess.run(params, check=True, input=preprocessed)
+
+		json_result = subprocess.run([
+			'pandoc',
+			'-s',
+			'-t', 'html',
+			'-f', 'markdown',
+			'--template', metadata_template,
+			str(path)
+		], check=True, capture_output=True)
+
+		post = json.loads(json_result.stdout)
+		post['path'] = output_html.relative_to(output_path)
+		posts.append(post)
+
+	# Sort posts after date, assumes well formed dates
+	posts.sort(key=lambda p: p['date'], reverse=True)
+
+
+def main():
+	# Ensure output_path exists and is empty
+	shutil.rmtree(output_path, ignore_errors=True)
+	os.makedirs(output_path_str, exist_ok=True)
+
+	# Copy CNAME to output
+	shutil.copyfile('CNAME', output_path.joinpath('CNAME'))
+
+	gen_posts()
+	gen_posts_index()
+	gen_index()
+
+
+if __name__ == '__main__':
+	main()

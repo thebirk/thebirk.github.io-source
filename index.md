@@ -1,11 +1,13 @@
 ---
 pagetitle: 'thebirk.net'
+resources:
+  - CNAME
 custom-style:
   - '
-div.contact-info td {
-    padding-right: 10px;
-}
-  '
+    div.contact-info td {
+      padding-right: 10px;
+    }
+    '
 ---
 
 ## Contact Info {.contact-info}
