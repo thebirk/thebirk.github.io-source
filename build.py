@@ -3,7 +3,14 @@ import json
 import shutil
 import pathlib
 import datetime
+import distutils.dir_util as dir_util
 import subprocess
+
+
+## TODO:
+# - The whole resources thing might not be necesarry. Just have a folder called ex. 'static' which just gets copied
+#   over the outout directory. That way we can hold a folder structure. Would also support CNAME.
+
 
 # Metadata variables
 # 
@@ -19,10 +26,11 @@ output_path_str = './output'
 output_path = pathlib.Path(output_path_str)
 
 posts_dir = './posts'
+static_resources_path = pathlib.Path('./static')
 navbar_template = './navbar.html'
 post_template = './html_template.html'
 metadata_template = './html_template_metadata.html'
-css = './markdown.css'
+css = './markdown.css.html'
 
 posts_path = output_path.joinpath('posts')
 
@@ -134,7 +142,6 @@ def gen_index():
 	subprocess.run(index_params, check=True)
 
 	metadata = get_metadata_for_file('index.md')
-	print(metadata)
 
 	os.remove(output_path.joinpath('index.html.pre'))
 
@@ -155,8 +162,29 @@ def preprocess_markdown(path, vars):
 	return result.stdout
 
 
-def copy_resources(metadata, src_path, dst_path):
+def copy_static_resources():
+	print('static/')
+	static_resources_path.mkdir(exist_ok=True)
+	dir_util.copy_tree(str(static_resources_path), str(output_path))
 	pass
+
+def gen_posts_metadata():
+	# Grab list of all posts in posts_dir
+	posts_list = list(pathlib.Path(posts_dir).glob("*.md"))
+	posts_path.mkdir(exist_ok=True)
+
+	for index, path in enumerate(posts_list):
+		print('({}/{})'.format(index+1, len(posts_list)), path)
+
+		meta = get_metadata_for_file(str(path))
+		output_html = posts_path.joinpath('{}.html'.format(path.stem))
+
+		post = json.loads(meta)
+		post['path'] = output_html.relative_to(output_path)
+		posts.append(post)
+
+	# Sort posts after date, assumes well formed dates
+	posts.sort(key=lambda p: p['date'], reverse=True)
 
 
 def gen_posts():
@@ -212,13 +240,11 @@ def main():
 	shutil.rmtree(output_path, ignore_errors=True)
 	os.makedirs(output_path_str, exist_ok=True)
 
-	# Copy CNAME to output
-	shutil.copyfile('CNAME', output_path.joinpath('CNAME'))
-	#shutil.copyfile('anchor.min.js', output_path.joinpath('anchor.min.js'))
-
 	gen_posts()
 	gen_posts_index()
 	gen_index()
+
+	copy_static_resources()
 
 
 if __name__ == '__main__':

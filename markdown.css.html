@@ -82,6 +82,11 @@ nav a:hover, nav a:active {
 	color: #FF4F20;
 }
 
+nav a + a::before {
+	content: " | ";
+	color: #fff;
+}
+
 a:link, a:visited {
 	text-decoration: none;
 	color: #FF8F20;
@@ -100,10 +105,6 @@ li::before {
 	content: "– ";
 }
 
-nav a + a::before {
-	content: " | ";
-	color: #fff;
-}
 
 #page {
 	background-color: #1A1A1A;
@@ -117,6 +118,9 @@ nav a + a::before {
 	border-color: #777;*/
 }
 
+#header {
+	padding-bottom: 0.5rem;
+}
 
 .title {
 	/*color: #fff;*/
