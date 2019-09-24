@@ -23,4 +23,4 @@ custom-style:
 
 ## Welcome
 
-Welcome to my blog/website. Here you can expect to find some blog posts and other stuff I might put on here.
+Welcome to my website. Here you can expect to find some posts/articles and other stuff I might put on here.

@@ -1,11 +1,12 @@
 import os
 import copy
 import json
+import jinja2 as jinja
 import shutil
 import pathlib
 import datetime
-import distutils.dir_util as dir_util
 import subprocess
+import distutils.dir_util as dir_util
 
 # Metadata variables
 # 
@@ -14,9 +15,20 @@ import subprocess
 #   useful for custom styling of certain elements.
 
 
+# 1. Read metadata from all posts
+#  - Using pandoc is overkill fix this.
+# 2. Template and generate the posts
+#  - No real need for templating
+# 3. Template and generate posts index.html
+#  - Uses jinja to display all the posts
+# 4. Template and generate index.html
+#  - Uses jinja to only display the 3 most recent posts
+
+
 # Dependencies:
 # - Python 3.7
 # - Pandoc with support for the '--metadata-file' option
+# - Jinja2
 
 
 output_path_str = './output'
@@ -143,6 +155,13 @@ def gen_index():
 	os.remove(output_path.joinpath('index.html.pre'))
 
 
+def preprocess_file(path, vars):
+	file_text = path.read_text()
+	template = jinja.Template(file_text)
+	result = template.render(vars)
+	return result
+
+
 def preprocess_markdown(path, vars):
 	params = [
 		'pandoc',
@@ -238,11 +257,20 @@ def main():
 	shutil.rmtree(output_path, ignore_errors=True)
 	os.makedirs(output_path_str, exist_ok=True)
 
+
 	gen_posts()
 	gen_posts_index()
 	gen_index()
 
 	copy_static_resources()
+
+	temp_text = """\
+{% for post in posts[0:3] %}
+- [{{post.title}}]({{post.path}}) - {{post.date}} {% endfor %}
+"""
+
+	temp = jinja.Template(temp_text)
+	print(temp.render(posts=posts))
 
 
 if __name__ == '__main__':

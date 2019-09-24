@@ -1,0 +1,14 @@
+{
+	"posts": [
+		{
+			"name": "A post",
+			"path": "posts/a-post.html",
+			"date": "2019-09-17",
+		},
+		{
+			"name": "Hello world!",
+			"path": "posts/hello-world.html",
+			"date": "2019-09-20",
+		},
+	]
+}
