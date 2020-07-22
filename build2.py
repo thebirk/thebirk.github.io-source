@@ -118,7 +118,6 @@ def gen_index():
 	with open(output_path.joinpath('index.html.pre'), mode='w') as f:
 		f.write('<p>Here are my most recent blog posts:</p>')
 		
-		print(f'posts: {posts}')
 		total = min(3, len(posts))
 		posts_to_list = posts[:total]
 
@@ -215,9 +214,9 @@ def gen_posts_metadata():
 		f.write('"posts": [')
 		for p in posts:
 			f.write('{')
-			f.write(f'"title": {p["title"]},')
-			f.write(f'"path": {p["path"]},')
-			f.write(f'"date": {p["date"]},')
+			f.write(f'"title": "{p["title"]}",')
+			f.write(f'"path": "{p["path"]}",')
+			f.write(f'"date": "{p["date"]}",')
 			f.write('},')
 		f.write(']')
 
@@ -271,13 +270,13 @@ def main():
 
 	copy_static_resources()
 
-	temp_text = """\
-{% for post in posts[0:3] %}
-- [{{post.title}}]({{post.path}}) - {{post.date}} {% endfor %}
-"""
-
-	temp = jinja.Template(temp_text)
-	print(temp.render(posts=posts))
+#	temp_text = """\
+#{% for post in posts[0:3] %}
+#- [{{post.title}}]({{post.path}}) - {{post.date}} {% endfor %}
+#"""
+#
+#	temp = jinja.Template(temp_text)
+#	print(temp.render(posts=posts))
 
 
 if __name__ == '__main__':
