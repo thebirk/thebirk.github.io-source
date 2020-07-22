@@ -202,7 +202,7 @@ def gen_posts_metadata():
 		output_html = posts_path.joinpath('{}.html'.format(path.stem))
 
 		post = meta
-		post['path'] = output_html.relative_to(output_path).as_posix()
+		post['path'] = '/' + output_html.relative_to(output_path).as_posix()
 		posts.append(post)
 
 	# Sort posts after date, assumes well formed dates
