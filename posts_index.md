@@ -2,7 +2,9 @@
 pagetitle: 'thebirk.net - Posts'
 ---
 
+### All posts
+
 $for(posts)$
-- [$posts.name$]($posts.path$) - $posts.date$
+- [$posts.title$]($posts.path$) - $posts.date$
 $endfor$
 

@@ -1,14 +1,1 @@
-{
-	"posts": [
-		{
-			"name": "A post",
-			"path": "posts/a-post.html",
-			"date": "2019-09-17",
-		},
-		{
-			"name": "Hello world!",
-			"path": "posts/hello-world.html",
-			"date": "2019-09-20",
-		},
-	]
-}
+{"posts": [{"title": OpenGL Checklist,"path": posts/opengl-checklist.html,"date": 2019-09-25,},{"title": Hello, world!,"path": posts/hello-world.html,"date": 2019-09-24,},]}

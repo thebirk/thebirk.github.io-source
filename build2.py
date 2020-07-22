@@ -61,16 +61,18 @@ def get_path_as_relative(path):
 def gen_posts_index():
 	print("posts/index.html")
 	with open(posts_path.joinpath('index.html.pre'), mode='w') as f:
-		f.write('<p>All posts</p>')
-		f.write("<ul>")
+		f.flush()
+		pass
+		# f.write('<p>All posts</p>')
+		# f.write("<ul>")
 
-		for p in posts:
-			f.write('<li><a href="{}">'.format(get_path_as_relative(p['path'])))
-			f.write(p['title'])
-			f.write("</a>")
-			f.write(' - {}'.format(p['date']))
-			f.write("</li>")
-		f.write("</ul>")
+		# for p in posts:
+		# 	f.write('<li><a href="{}">'.format(get_path_as_relative(p['path'])))
+		# 	f.write(p['title'])
+		# 	f.write("</a>")
+		# 	f.write(' - {}'.format(p['date']))
+		# 	f.write("</li>")
+		# f.write("</ul>")
 
 	index_params = [
 		'pandoc',
@@ -116,6 +118,7 @@ def gen_index():
 	with open(output_path.joinpath('index.html.pre'), mode='w') as f:
 		f.write('<p>Here are my most recent blog posts:</p>')
 		
+		print(f'posts: {posts}')
 		total = min(3, len(posts))
 		posts_to_list = posts[:total]
 
@@ -190,24 +193,43 @@ def gen_posts_metadata():
 	posts_list = list(pathlib.Path(posts_dir).glob("*.md"))
 	posts_path.mkdir(exist_ok=True)
 
+	print("Generating metadata for posts:")
+
 	for index, path in enumerate(posts_list):
 		print('({}/{})'.format(index+1, len(posts_list)), path)
 
 		meta = get_metadata_for_file(str(path))
 		output_html = posts_path.joinpath('{}.html'.format(path.stem))
 
-		post = json.loads(meta)
-		post['path'] = output_html.relative_to(output_path)
+		post = meta
+		post['path'] = output_html.relative_to(output_path).as_posix()
 		posts.append(post)
 
 	# Sort posts after date, assumes well formed dates
 	posts.sort(key=lambda p: p['date'], reverse=True)
+
+	# Output metadata for all posts
+	with open('test.meta.json', mode='w') as f:
+		f.write('{')
+
+		f.write('"posts": [')
+		for p in posts:
+			f.write('{')
+			f.write(f'"title": {p["title"]},')
+			f.write(f'"path": {p["path"]},')
+			f.write(f'"date": {p["date"]},')
+			f.write('},')
+		f.write(']')
+
+		f.write('}')
 
 
 def gen_posts():
 	# Grab list of all posts in posts_dir
 	posts_list = list(pathlib.Path(posts_dir).glob("*.md"))
 	posts_path.mkdir(exist_ok=True)
+
+	print("Generating posts:")
 
 	for index, path in enumerate(posts_list):
 		print('({}/{})'.format(index+1, len(posts_list)), path)
@@ -235,22 +257,6 @@ def gen_posts():
 		# print(params)
 		subprocess.run(params, check=True, input=preprocessed)
 
-		json_result = subprocess.run([
-			'pandoc',
-			'-s',
-			'-t', 'html',
-			'-f', 'markdown',
-			'--template', metadata_template,
-			str(path)
-		], check=True, capture_output=True)
-
-		post = json.loads(json_result.stdout)
-		post['path'] = output_html.relative_to(output_path)
-		posts.append(post)
-
-	# Sort posts after date, assumes well formed dates
-	posts.sort(key=lambda p: p['date'], reverse=True)
-
 
 def main():
 	# Ensure output_path exists and is empty
@@ -258,6 +264,7 @@ def main():
 	os.makedirs(output_path_str, exist_ok=True)
 
 
+	gen_posts_metadata()
 	gen_posts()
 	gen_posts_index()
 	gen_index()
