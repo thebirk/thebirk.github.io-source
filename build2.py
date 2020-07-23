@@ -125,7 +125,7 @@ def gen_index():
 		for p in posts_to_list:
 			f.write('<li>')
 			f.write('{} - '.format(p['date']))
-			f.write('<a href="{}">'.format(get_path_as_relative(p['path'])))
+			f.write('<a href="{}">'.format((p['path'])))
 			f.write(p['title'])
 			f.write("</a>")
 			f.write("</li>")
