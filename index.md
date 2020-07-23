@@ -12,12 +12,12 @@ custom-style:
 
 ## Contact Info {.contact-info}
 
-|         |                              |
-|:--------|:-----------------------------|
-| Name    | Aleksander Birkeland         |
-| Email   | pingnor *at* gmail *dot* com |
-| Twitter | @pingnor                     |
-| GitHub  | <https://github.com/thebirk> |
+|         |                                                     |
+|:--------|:----------------------------------------------------|
+| Name    | Aleksander Birkeland                                |
+| Email   | pingnor *a*​*t* gmail *d*​*o*​*t* com                        |
+| Twitter | [＠thebirkisreal](https://twitter.com/thebirkisreal) |
+| GitHub  | <https://github.com/thebirk>                        |
 
 ---
 
