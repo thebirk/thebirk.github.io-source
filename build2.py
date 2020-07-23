@@ -53,26 +53,11 @@ global_pandoc_vars = {
 # List of all posts
 posts = []
 
-def get_path_as_relative(path):
-	#TODO: This should be renamed to something like get_path_as_relative_link() or something as all
-	#      it does it make sure the path with '/' thus making it relative to the website root
-	return '/' + str(path)
 
 def gen_posts_index():
 	print("posts/index.html")
 	with open(posts_path.joinpath('index.html.pre'), mode='w') as f:
 		f.flush()
-		pass
-		# f.write('<p>All posts</p>')
-		# f.write("<ul>")
-
-		# for p in posts:
-		# 	f.write('<li><a href="{}">'.format(get_path_as_relative(p['path'])))
-		# 	f.write(p['title'])
-		# 	f.write("</a>")
-		# 	f.write(' - {}'.format(p['date']))
-		# 	f.write("</li>")
-		# f.write("</ul>")
 
 	index_params = [
 		'pandoc',
@@ -130,7 +115,7 @@ def gen_index():
 			f.write("</a>")
 			f.write("</li>")
 
-		f.write('<li><a href="{}">More</a></li>'.format(get_path_as_relative(posts_path.relative_to(output_path))))
+		f.write('<li><a href="{}">More</a></li>'.format('/' + (posts_path.relative_to(output_path).as_posix())))
 		f.write('</ul>')
 
 
